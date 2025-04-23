@@ -1,7 +1,12 @@
 from flask import Flask, jsonify, request
 import mysql.connector
+from flask_caching import Cache
 
 app = Flask(__name__)
+
+# Basic cache config
+cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
+cache.init_app(app)
 
 # Database connection function
 def get_db_connection():
@@ -17,6 +22,7 @@ def home():
     return {"message": "Mr._Worldwide API – Dale!"}
 
 @app.route("/albums", methods=["GET"])
+@cache.cached(timeout=300)  # cache for 5 minutes
 def get_albums():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
@@ -58,6 +64,7 @@ def get_tracks():
     })
 
 @app.route("/playlist", methods=["GET"])
+@cache.cached(timeout=300, query_string=True)  # cache based on query params
 def get_playlist():
     limit = request.args.get("limit", 10)
     conn = get_db_connection()
