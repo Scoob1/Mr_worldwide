@@ -1,12 +1,22 @@
 from flask import Flask, jsonify, request
 import mysql.connector
 from flask_caching import Cache
+from flask_rq2 import RQ
+import redis
+from rq.job import Job
 
 app = Flask(__name__)
+app.config['RQ_REDIS_URL'] = 'redis://localhost:6379/0'
 
 # Basic cache config
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 cache.init_app(app)
+rq = RQ(app)
+
+# background jobs
+@rq.job
+def generate_playlist(length):
+    return [f"Track {i+1}" for i in range(length)]
 
 # Database connection function
 def get_db_connection():
@@ -74,6 +84,24 @@ def get_playlist():
     cursor.close()
     conn.close()
     return jsonify(playlist)
+
+@app.route("/queue/playlist", methods=["GET"])
+def queue_playlist():
+    length = int(request.args.get("length", 10))
+    job = generate_playlist.queue(length)
+    return jsonify({"job_id": job.id, "status": "Queued"})
+
+@app.route("/queue/status/<job_id>", methods=["GET"])
+def check_job_status(job_id):
+    conn = redis.Redis()
+    job = Job.fetch(job_id, connection=conn)
+
+    if job.is_finished:
+        return jsonify({"status": "done", "playlist": job.result})
+    elif job.is_failed:
+        return jsonify({"status": "failed"})
+    else:
+        return jsonify({"status": "processing"})
 
 if __name__ == "__main__":
     app.run(debug=True)
