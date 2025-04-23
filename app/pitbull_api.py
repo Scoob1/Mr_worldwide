@@ -28,6 +28,9 @@ def get_albums():
 
 @app.route("/tracks", methods=["GET"])
 def get_tracks():
+    page = request.args.get("page", default=1, type=int)
+    limit = request.args.get("limit", default=10, type=int)
+    offset = (page - 1) * limit
     year = request.args.get("year")
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
@@ -37,14 +40,22 @@ def get_tracks():
             SELECT t.* FROM tracks t
             JOIN albums a ON t.album_id = a.id
             WHERE YEAR(a.release_date) = %s
-        """, (year,))
+            LIMIT %s OFFSET %s
+        """, (year, limit, offset))
     else:
-        cursor.execute("SELECT * FROM tracks")
+        cursor.execute("""
+                       SELECT * FROM tracks
+                       LIMIT %s OFFSET %s
+                       """, (limit, offset))
 
     tracks = cursor.fetchall()
     cursor.close()
     conn.close()
-    return jsonify(tracks)
+    return jsonify({
+        "page": page,
+        "limit": limit,
+        "results": tracks
+    })
 
 @app.route("/playlist", methods=["GET"])
 def get_playlist():
