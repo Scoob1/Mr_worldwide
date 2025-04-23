@@ -4,8 +4,10 @@ from flask_caching import Cache
 from flask_rq2 import RQ
 import redis
 from rq.job import Job
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config['RQ_REDIS_URL'] = 'redis://localhost:6379/0'
 
 # Basic cache config
