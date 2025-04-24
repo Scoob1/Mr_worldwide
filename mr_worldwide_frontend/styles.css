@@ -12,22 +12,31 @@ body {
 }
 
 .title-box {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0);
   padding: 24px;
-  margin-top: 40px;
+  margin-top: 80px;
   margin-bottom: 10px;
+  border-radius: 10px;
   text-align: center;
 }
 
 .title-box h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(to bottom, #ffb45e, #cc3a2f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
 }
 
 .title-box h2 {
-  margin-top: 8px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  margin-top: 90px;
+  background: linear-gradient(to bottom, #ffb45e, #cc3a2f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .track-grid {
@@ -74,17 +83,20 @@ select {
 
 .footer-grid {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   gap: 20px;
   max-width: 960px;
-  margin: 80px auto;
+  margin: 2000px auto 80px auto;
   padding: 0 16px;
 }
 
 .footer-box {
+  flex: 1;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid #ff5e5e;
   padding: 24px;
   border-radius: 12px;
+  text-align: center;
 }
 
