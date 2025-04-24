@@ -6,11 +6,14 @@ body {
   background: url('mr305.jpg') no-repeat top center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: top center;
   background-attachment: scroll;
   overflow-x: hidden;
 }
 
 .background {
+  min-height: 100vh;
+  width: 100%
   text-align: center;
 }
 
@@ -92,7 +95,7 @@ select {
   justify-content: center;
   gap: 20px;
   max-width: 960px;
-  margin: 700px auto 80px auto;
+  margin: 160px auto 80px auto;
   padding: 0 16px;
 }
 
@@ -105,3 +108,109 @@ select {
   text-align: center;
 }
 
+.alien-loop {
+  position: relative;
+  width: 100px;
+  height: 120px;
+  margin: 60px auto 80px;
+}
+
+.alien-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: auto;
+  opacity: 0;
+  animation: fadeLoop 2.5s infinite;
+}
+
+.frame-1 { animation-delay: 0s; }
+.frame-2 { animation-delay: 0.5s; }
+.frame-3 { animation-delay: 1s; }
+.frame-4 { animation-delay: 1.5s; }
+.frame-5 { animation-delay: 2s; }
+
+@keyframes fadeLoop {
+  0%   { opacity: 1; }
+  19.99%  { opacity: 1; }
+  20%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .title-box h1 {
+    font-size: 1.6rem;
+  }
+
+  .title-box h2 {
+    font-size: 1rem;
+  }
+
+  .footer-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-box {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .alien-loop {
+    width: 80px;
+    height: 100px;
+    margin-top: 40px;
+  }
+
+  .alien-frame {
+    width: 80px;
+  }
+
+  select {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  .club-vibes {
+    margin-top: 600px; /* for background alignment */
+  }
+}
+
+.nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.hamburger {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #ff5e5e;
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 10px;
+  border: 1px solid #ff5e5e;
+  border-radius: 8px;
+  flex-direction: column;
+}
+
+.nav-menu a {
+  color: #ff5e5e;
+  text-decoration: none;
+  margin: 8px 0;
+  display: block;
+  font-weight: bold;
+}
+
+.nav-menu a:hover {
+  color: #ffa1a1;
+}

@@ -7,6 +7,17 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="nav-header">
+    <div class="hamburger" onclick="toggleMenu()">
+      ☰
+    </div>
+    <nav id="nav-menu" class="nav-menu">
+      <a href="#club">Club Vibes</a>
+      <a href="#alien">Alien Dance</a>
+      <a href="#tour">Tour</a>
+      <a href="#shop">Shop</a>
+    </nav>
+  </header>
 
     <section class="track-grid">
     </section>
@@ -17,6 +28,15 @@
       </div>
       <h2>CLUB VIBES</h2>
     </section>
+
+    <div class="alien-loop">
+      <img src="litalien1.png" class="alien-frame frame-1" />
+      <img src="litalien2.png" class="alien-frame frame-2" />
+      <img src="litalien3.png" class="alien-frame frame-3" />
+      <img src="litalien4.png" class="alien-frame frame-4" />
+      <img src="litalien5.png" class="alien-frame frame-5" />
+    </div>
+    
 
     <footer class="footer-grid">
       <div class="footer-box">
@@ -30,5 +50,11 @@
       </div>
     </footer>
   </div>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("nav-menu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+  </script>
 </body>
 </html>
