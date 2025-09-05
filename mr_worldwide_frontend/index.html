@@ -6,6 +6,19 @@
   <title>Mr. Worldwide</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+<script>
+  let position = 0;
+  const track = document.querySelector(".carousel-track");
+  const boxWidth = 240; // width + margin of music box
+
+  function moveCarousel(direction) {
+    const totalBoxes = document.querySelectorAll(".music-box").length;
+    const maxPosition = -(boxWidth * (totalBoxes - 1));
+    position += direction * boxWidth;
+    position = Math.min(0, Math.max(position, maxPosition));
+    track.style.transform = `translateX(${position}px)`;
+  }
+</script>
 <body>
   <header class="nav-header">
     <div class="hamburger" onclick="toggleMenu()">
@@ -24,8 +37,23 @@
 
     <section class="club-vibes">
       <div class="title-box">
-        <h2>The Latest Vibes from Mr. Worldwide</h2>
+        <h2>Your Latest Vibes from Mr. Worldwide</h2>
       </div>
+      <section class="track-grid-wrapper">
+        <div class="track-grid-bg"></div>
+      <section class="track-grid">
+        <div class="track neon orange">Fireworks <span class="play">▶</span></div>
+        <div class="track neon red">Rhythm Divine <span class="play">▶</span></div>
+        <div class="track neon yellow">On the Floor <span class="play">▶</span></div>
+        <div class="track neon orange">Bailando <span class="play">▶</span></div>
+        <div class="track neon pink">Give Me Everything <span class="play">▶</span></div>
+        <div class="track neon purple">International Love <span class="play">▶</span></div>
+        <div class="track neon orange">Time of Our Lives <span class="play">▶</span></div>
+        <div class="track neon pink">DJ Got Us Fallin in Love <span class="play">▶</span></div>
+        <div class="track neon purple">Feel This Moment <span class="play">▶</span></div>
+        <div class="track neon orange">Rain Over Me <span class="play">▶</span></div>
+      </section>
+
       <h2>CLUB VIBES</h2>
     </section>
 

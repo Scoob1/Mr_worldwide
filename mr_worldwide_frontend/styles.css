@@ -49,26 +49,63 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 30px;
-  max-width: 960px;
-  margin: 60px auto;
+  max-width: 1000px;
+  margin: 40px auto;
   padding: 0 16px;
 }
 
 .track {
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px solid #ff5e5e;
   padding: 20px;
-  font-size: 1rem;
-  border-radius: 12px;
-  text-transform: uppercase;
+  font-size: 1.1rem;
   font-weight: bold;
-  transition: transform 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  border-radius: 12px;
+  position: relative;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba(255, 94, 94, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .track:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 94, 94, 0.9);
 }
 
+.track .play {
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  opacity: 0.85;
+}
+
+/* Neon Color Variants */
+.neon.red {
+  border: 2px solid #ff5e5e;
+  box-shadow: 0 0 8px #ff5e5e, 0 0 16px #ff5e5e;
+}
+
+.neon.pink {
+  border: 2px solid #ff69b4;
+  box-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4;
+}
+
+.neon.purple {
+  border: 2px solid #c64aff;
+  box-shadow: 0 0 8px #c64aff, 0 0 16px #c64aff;
+}
+
+.neon.orange {
+  border: 2px solid #ff944d;
+  box-shadow: 0 0 8px #ff944d, 0 0 16px #ff944d;
+}
+
+.neon.yellow {
+  border: 2px solid #faed27;
+  box-shadow: 0 0 8px #faed27, 0 0 16px #faed27;
+}
 .club-vibes {
   margin-top: 100px;
   margin-bottom: 80px;
@@ -213,4 +250,62 @@ select {
 
 .nav-menu a:hover {
   color: #ffa1a1;
+}
+
+.carousel-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+  max-width: 960px;
+  overflow: hidden;
+}
+
+.carousel-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.music-box {
+  min-width: 220px;
+  height: 180px;
+  margin: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #ff5e5e;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ff5e5e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px #ff5e5e;
+}
+
+.carousel-btn {
+  background: none;
+  color: #ff5e5e;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0 10px;
+  transition: transform 0.2s ease;
+}
+
+.carousel-btn:hover {
+  transform: scale(1.2);
 }
